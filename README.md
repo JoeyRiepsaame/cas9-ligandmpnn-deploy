@@ -20,7 +20,28 @@ from a 12-paper wet-lab audit (see `../SpRY-Cas9-MPNN-constraint-audit-...md`).
 inputs/8SRS.cif            # structure (mmCIF — preserves lowercase chain 'c')
 fixed_residues/tierN_fixed.txt   # validated "A53 A61 ..." fixed-position strings
 deploy_ligandmpnn_8srs.sh  # main script (clones LigandMPNN, preflight, run, rank)
+constraints/               # how the fixed-lists are generated (conservation + DCA)
+tests/                     # regression tests for the constraint stage
 ```
+
+## Where the tiers come from — the `constraints/` stage
+The fixed-position lists are not hand-curated; they are produced by the
+`constraints/` pipeline stage from a 3,782-sequence Cas9 family MSA + the 8SRS
+structure, combining two signals:
+- **conservation** (1st-order, per column) — the tier backbone
+- **coevolution / DCA** (2nd-order, column pairs) — `mi_apc` (validated) or
+  `evcouplings` mean-field; adds the coupled positions conservation misses
+
+Regenerate / audit:
+```bash
+python -m constraints.cli --msa constraints/data/cas9_msa.fasta.gz \
+    --structure inputs/8SRS.cif --method mi_apc --n-top-dca 42 --emit-fixed \
+    --out outputs/constraints/8srs_constraints.json
+python -m pytest tests/ -q                  # fast checks
+RUN_SLOW_DCA=1 python -m pytest tests/ -q   # + reproduce the validated 42 DCA positions
+```
+See `constraints/README.md` for the conservation-vs-DCA detail and the
+position-mapping bug this stage fixes.
 
 ## Run on RunPod
 ```bash
