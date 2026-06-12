@@ -1,0 +1,14 @@
+# LigandMPNN code + weights are pulled at deploy time, not vendored
+LigandMPNN/
+model_params/
+*.pt
+
+# run artifacts
+outputs/
+*.log
+
+# python / os cruft
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
