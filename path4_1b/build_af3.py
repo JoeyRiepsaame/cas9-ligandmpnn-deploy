@@ -47,12 +47,13 @@ def parse_na(cif, chain):
     return "".join(seq)
 
 
-def load_proteins(n_designs):
-    """ordered list of (job_name, role, sequence): designs (by Pareto z order in file) + calibrators."""
+def load_proteins(n_designs, shortlist_file="synthesis_shortlist.json"):
+    """ordered list of (job_name, role, sequence): designs from the shortlist + calibrators."""
     out = []
-    sl = json.load(open(os.path.join(HERE, "synthesis_shortlist.json")))["shortlist"][:n_designs]
+    sl = json.load(open(os.path.join(HERE, shortlist_file)))["shortlist"][:n_designs]
     for d in sl:
-        out.append((f"cas9_{d['id']}", f"design/{d['tier']}", d["seq"]))
+        prov = d.get("provenance", d["tier"])
+        out.append((f"cas9_{d['id']}", f"design/{prov}", d["seq"]))
     # calibrators (wt/dcas9/ncas9/bind_dead/scram_rec)
     name = None; cur = []
     for ln in open(os.path.join(HERE, "af3_calibrators.fasta")):
@@ -72,7 +73,7 @@ def main(a):
     print(f"context: sgRNA(B)={len(sgRNA)}nt  DNA C={len(dna['C'])} D={len(dna['D'])} c={len(dna['c'])}")
     assert set(sgRNA) <= RNA and len(sgRNA) == 98, "sgRNA parse off"
 
-    proteins = load_proteins(a.n_designs)
+    proteins = load_proteins(a.n_designs, a.shortlist)
     # bio-safety: every protein 1341 aa (designs/calibrators) and present
     for nm, role, seq in proteins:
         assert len(seq) == 1341, f"{nm}: length {len(seq)} != 1341"
@@ -113,6 +114,7 @@ def main(a):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--n-designs", type=int, default=17, dest="n_designs")
+    ap.add_argument("--n-designs", type=int, default=18, dest="n_designs")
+    ap.add_argument("--shortlist", default="synthesis_shortlist.json")
     ap.add_argument("--seeds", type=int, default=1)
     main(ap.parse_args())

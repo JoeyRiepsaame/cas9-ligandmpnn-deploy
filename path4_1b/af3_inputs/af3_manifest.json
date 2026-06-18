@@ -11,103 +11,93 @@
   "cas9_sgRNA_iptm": "chain_pair_iptm[0][1]",
   "jobs": [
     {
-      "name": "cas9_d00806",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00824",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00102",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00900",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00018",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00781",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00542",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00272",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00918",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00096",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00634",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
       "name": "cas9_d00097",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00795",
-      "role": "design/T_balanced",
+      "role": "design/bold-novelty",
       "protein_len": 1341
     },
     {
       "name": "cas9_d00101",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00109",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00091",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00113",
-      "role": "design/T_aggressive",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00134",
-      "role": "design/T_aggressive",
+      "role": "design/bold-novelty",
       "protein_len": 1341
     },
     {
       "name": "cas9_d00107",
-      "role": "design/T_aggressive",
+      "role": "design/bold-novelty",
       "protein_len": 1341
     },
     {
-      "name": "cas9_d00617",
-      "role": "design/T_balanced",
+      "name": "cas9_d00134",
+      "role": "design/bold-novelty",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00542",
+      "role": "design/consensus",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00781",
+      "role": "design/consensus",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00900",
+      "role": "design/consensus",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00806",
+      "role": "design/consensus",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00537",
+      "role": "design/esm-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00523",
+      "role": "design/esm-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00941",
+      "role": "design/esm-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00526",
+      "role": "design/esm-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d01011",
+      "role": "design/esm-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00824",
+      "role": "design/z-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00918",
+      "role": "design/z-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00018",
+      "role": "design/z-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00102",
+      "role": "design/z-axis",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00272",
+      "role": "design/z-axis",
       "protein_len": 1341
     },
     {
