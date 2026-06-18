@@ -3,3 +3,8 @@ outputs/
 __pycache__/
 *.pyc
 esm_scores*.json
+unique_meta.json
+unique.fasta
+dutton_scores.json
+pareto_ranked.csv
+ld_matrix.json
