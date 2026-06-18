@@ -1,0 +1,124 @@
+{
+  "chain_order": [
+    "Cas9",
+    "sgRNA",
+    "DNA_C",
+    "DNA_D",
+    "DNA_c",
+    "MG"
+  ],
+  "rloop_iptm": "max chain_pair_iptm[1][2..4]",
+  "cas9_sgRNA_iptm": "chain_pair_iptm[0][1]",
+  "jobs": [
+    {
+      "name": "cas9_d00102",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00629",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00018",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00542",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00631",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00515",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00634",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00096",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00097",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00101",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00109",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00091",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00113",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00134",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00107",
+      "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00617",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00623",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_cal_wt_spry",
+      "role": "calibrator",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_cal_dcas9",
+      "role": "calibrator",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_cal_ncas9_h840a",
+      "role": "calibrator",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_cal_bind_dead",
+      "role": "calibrator",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_cal_scram_rec",
+      "role": "calibrator",
+      "protein_len": 1341
+    }
+  ]
+}
