@@ -35,10 +35,18 @@ con = json.load(open(os.path.join(REPO, "outputs/constraints/8srs_constraints.js
 SPRY = set(p["pos"] for p in dm["spry_positions"])
 CATALYTIC = set(c["pos"] for c in dm["catalytic"])
 DCA = set(con["dca_top"])
-# conservation sets (author resnums) keyed by integer floor percent
-CONS = {90: set(con["conservation_tiers"]["ge_90"]),
-        70: set(con["conservation_tiers"]["ge_70"]),
-        50: set(con["conservation_tiers"]["ge_50"])}
+# conservation sets (author resnums) keyed by integer floor percent.
+# Prefer the phylogeny-aware (Henikoff-reweighted) tiers if present — they use the
+# same sequence weighting as the DCA stage (reweight_conservation.py). Fall back to
+# the raw unweighted tiers from the constraints stage otherwise.
+_w = os.path.join(HERE, "weighted_conservation_tiers.json")
+if os.path.exists(_w):
+    _ct = json.load(open(_w))["conservation_tiers"]
+    print(f"[conservation] using phylogeny-aware (Henikoff-reweighted) tiers from {os.path.basename(_w)}")
+else:
+    _ct = con["conservation_tiers"]
+    print("[conservation] using raw UNWEIGHTED tiers (run reweight_conservation.py for phylogeny-aware)")
+CONS = {90: set(_ct["ge_90"]), 70: set(_ct["ge_70"]), 50: set(_ct["ge_50"])}
 
 # the 35 nucleic-acid / active-site contacts = tier1 minus SpRY minus catalytic
 tier1 = {int(tok[1:]) for tok in open(os.path.join(REPO, "fixed_residues/tier1_fixed.txt")).read().split()}

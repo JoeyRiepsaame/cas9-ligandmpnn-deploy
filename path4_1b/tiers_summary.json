@@ -14,22 +14,22 @@
         "MODERATE": 90,
         "REDESIGN": 100
       },
-      "n_fixed": 429,
-      "fixed_frac": 0.314,
+      "n_fixed": 357,
+      "fixed_frac": 0.261,
       "per_domain": {
         "RuvC-I": {
           "policy": "MODERATE",
           "floor": 90,
           "length": 59,
-          "fixed": 33,
-          "fixed_frac": 0.559
+          "fixed": 25,
+          "fixed_frac": 0.424
         },
         "BridgeHelix": {
           "policy": "MODERATE",
           "floor": 90,
           "length": 34,
-          "fixed": 21,
-          "fixed_frac": 0.618
+          "fixed": 19,
+          "fixed_frac": 0.559
         },
         "REC1": {
           "policy": "REDESIGN",
@@ -56,29 +56,29 @@
           "policy": "MODERATE",
           "floor": 90,
           "length": 57,
-          "fixed": 33,
-          "fixed_frac": 0.579
+          "fixed": 27,
+          "fixed_frac": 0.474
         },
         "HNH": {
           "policy": "PROTECT",
           "floor": 70,
           "length": 134,
-          "fixed": 83,
-          "fixed_frac": 0.619
+          "fixed": 75,
+          "fixed_frac": 0.56
         },
         "RuvC-III": {
           "policy": "MODERATE",
           "floor": 90,
           "length": 190,
-          "fixed": 85,
-          "fixed_frac": 0.447
+          "fixed": 63,
+          "fixed_frac": 0.332
         },
         "PI": {
           "policy": "PROTECT",
           "floor": 70,
           "length": 270,
-          "fixed": 141,
-          "fixed_frac": 0.522
+          "fixed": 115,
+          "fixed_frac": 0.426
         }
       }
     },
@@ -88,71 +88,71 @@
         "MODERATE": 70,
         "REDESIGN": 90
       },
-      "n_fixed": 786,
-      "fixed_frac": 0.575,
+      "n_fixed": 668,
+      "fixed_frac": 0.488,
       "per_domain": {
         "RuvC-I": {
           "policy": "MODERATE",
           "floor": 70,
           "length": 59,
-          "fixed": 40,
-          "fixed_frac": 0.678
+          "fixed": 38,
+          "fixed_frac": 0.644
         },
         "BridgeHelix": {
           "policy": "MODERATE",
           "floor": 70,
           "length": 34,
-          "fixed": 27,
-          "fixed_frac": 0.794
+          "fixed": 23,
+          "fixed_frac": 0.676
         },
         "REC1": {
           "policy": "REDESIGN",
           "floor": 90,
           "length": 86,
-          "fixed": 43,
-          "fixed_frac": 0.5
+          "fixed": 40,
+          "fixed_frac": 0.465
         },
         "REC2": {
           "policy": "REDESIGN",
           "floor": 90,
           "length": 128,
-          "fixed": 30,
-          "fixed_frac": 0.234
+          "fixed": 20,
+          "fixed_frac": 0.156
         },
         "REC3": {
           "policy": "REDESIGN",
           "floor": 90,
           "length": 410,
-          "fixed": 169,
-          "fixed_frac": 0.412
+          "fixed": 138,
+          "fixed_frac": 0.337
         },
         "RuvC-II": {
           "policy": "MODERATE",
           "floor": 70,
           "length": 57,
-          "fixed": 42,
-          "fixed_frac": 0.737
+          "fixed": 35,
+          "fixed_frac": 0.614
         },
         "HNH": {
           "policy": "PROTECT",
           "floor": 50,
           "length": 134,
-          "fixed": 112,
-          "fixed_frac": 0.836
+          "fixed": 102,
+          "fixed_frac": 0.761
         },
         "RuvC-III": {
           "policy": "MODERATE",
           "floor": 70,
           "length": 190,
-          "fixed": 110,
-          "fixed_frac": 0.579
+          "fixed": 101,
+          "fixed_frac": 0.532
         },
         "PI": {
           "policy": "PROTECT",
           "floor": 50,
           "length": 270,
-          "fixed": 213,
-          "fixed_frac": 0.789
+          "fixed": 171,
+          "fixed_frac": 0.633
         }
       }
     },
@@ -162,22 +162,22 @@
         "MODERATE": 50,
         "REDESIGN": 70
       },
-      "n_fixed": 955,
-      "fixed_frac": 0.698,
+      "n_fixed": 847,
+      "fixed_frac": 0.619,
       "per_domain": {
         "RuvC-I": {
           "policy": "MODERATE",
           "floor": 50,
           "length": 59,
-          "fixed": 51,
-          "fixed_frac": 0.864
+          "fixed": 46,
+          "fixed_frac": 0.78
         },
         "BridgeHelix": {
           "policy": "MODERATE",
           "floor": 50,
           "length": 34,
-          "fixed": 32,
-          "fixed_frac": 0.941
+          "fixed": 29,
+          "fixed_frac": 0.853
         },
         "REC1": {
           "policy": "REDESIGN",
@@ -190,43 +190,43 @@
           "policy": "REDESIGN",
           "floor": 70,
           "length": 128,
-          "fixed": 53,
-          "fixed_frac": 0.414
+          "fixed": 48,
+          "fixed_frac": 0.375
         },
         "REC3": {
           "policy": "REDESIGN",
           "floor": 70,
           "length": 410,
-          "fixed": 241,
-          "fixed_frac": 0.588
+          "fixed": 211,
+          "fixed_frac": 0.515
         },
         "RuvC-II": {
           "policy": "MODERATE",
           "floor": 50,
           "length": 57,
-          "fixed": 46,
-          "fixed_frac": 0.807
+          "fixed": 44,
+          "fixed_frac": 0.772
         },
         "HNH": {
           "policy": "PROTECT",
           "floor": 50,
           "length": 134,
-          "fixed": 112,
-          "fixed_frac": 0.836
+          "fixed": 102,
+          "fixed_frac": 0.761
         },
         "RuvC-III": {
           "policy": "MODERATE",
           "floor": 50,
           "length": 190,
-          "fixed": 149,
-          "fixed_frac": 0.784
+          "fixed": 138,
+          "fixed_frac": 0.726
         },
         "PI": {
           "policy": "PROTECT",
           "floor": 50,
           "length": 270,
-          "fixed": 213,
-          "fixed_frac": 0.789
+          "fixed": 171,
+          "fixed_frac": 0.633
         }
       }
     }
