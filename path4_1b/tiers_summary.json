@@ -1,0 +1,234 @@
+{
+  "target": "SpRY-Cas9 / 8SRS chain A",
+  "always_fixed": {
+    "spry": 11,
+    "catalytic": 7,
+    "contacts": 35,
+    "dca": 42,
+    "union": 95
+  },
+  "tiers": {
+    "T_aggressive": {
+      "floors": {
+        "PROTECT": 70,
+        "MODERATE": 90,
+        "REDESIGN": 100
+      },
+      "n_fixed": 429,
+      "fixed_frac": 0.314,
+      "per_domain": {
+        "RuvC-I": {
+          "policy": "MODERATE",
+          "floor": 90,
+          "length": 59,
+          "fixed": 33,
+          "fixed_frac": 0.559
+        },
+        "BridgeHelix": {
+          "policy": "MODERATE",
+          "floor": 90,
+          "length": 34,
+          "fixed": 21,
+          "fixed_frac": 0.618
+        },
+        "REC1": {
+          "policy": "REDESIGN",
+          "floor": 100,
+          "length": 86,
+          "fixed": 11,
+          "fixed_frac": 0.128
+        },
+        "REC2": {
+          "policy": "REDESIGN",
+          "floor": 100,
+          "length": 128,
+          "fixed": 8,
+          "fixed_frac": 0.062
+        },
+        "REC3": {
+          "policy": "REDESIGN",
+          "floor": 100,
+          "length": 410,
+          "fixed": 14,
+          "fixed_frac": 0.034
+        },
+        "RuvC-II": {
+          "policy": "MODERATE",
+          "floor": 90,
+          "length": 57,
+          "fixed": 33,
+          "fixed_frac": 0.579
+        },
+        "HNH": {
+          "policy": "PROTECT",
+          "floor": 70,
+          "length": 134,
+          "fixed": 83,
+          "fixed_frac": 0.619
+        },
+        "RuvC-III": {
+          "policy": "MODERATE",
+          "floor": 90,
+          "length": 190,
+          "fixed": 85,
+          "fixed_frac": 0.447
+        },
+        "PI": {
+          "policy": "PROTECT",
+          "floor": 70,
+          "length": 270,
+          "fixed": 141,
+          "fixed_frac": 0.522
+        }
+      }
+    },
+    "T_balanced": {
+      "floors": {
+        "PROTECT": 50,
+        "MODERATE": 70,
+        "REDESIGN": 90
+      },
+      "n_fixed": 786,
+      "fixed_frac": 0.575,
+      "per_domain": {
+        "RuvC-I": {
+          "policy": "MODERATE",
+          "floor": 70,
+          "length": 59,
+          "fixed": 40,
+          "fixed_frac": 0.678
+        },
+        "BridgeHelix": {
+          "policy": "MODERATE",
+          "floor": 70,
+          "length": 34,
+          "fixed": 27,
+          "fixed_frac": 0.794
+        },
+        "REC1": {
+          "policy": "REDESIGN",
+          "floor": 90,
+          "length": 86,
+          "fixed": 43,
+          "fixed_frac": 0.5
+        },
+        "REC2": {
+          "policy": "REDESIGN",
+          "floor": 90,
+          "length": 128,
+          "fixed": 30,
+          "fixed_frac": 0.234
+        },
+        "REC3": {
+          "policy": "REDESIGN",
+          "floor": 90,
+          "length": 410,
+          "fixed": 169,
+          "fixed_frac": 0.412
+        },
+        "RuvC-II": {
+          "policy": "MODERATE",
+          "floor": 70,
+          "length": 57,
+          "fixed": 42,
+          "fixed_frac": 0.737
+        },
+        "HNH": {
+          "policy": "PROTECT",
+          "floor": 50,
+          "length": 134,
+          "fixed": 112,
+          "fixed_frac": 0.836
+        },
+        "RuvC-III": {
+          "policy": "MODERATE",
+          "floor": 70,
+          "length": 190,
+          "fixed": 110,
+          "fixed_frac": 0.579
+        },
+        "PI": {
+          "policy": "PROTECT",
+          "floor": 50,
+          "length": 270,
+          "fixed": 213,
+          "fixed_frac": 0.789
+        }
+      }
+    },
+    "T_safe": {
+      "floors": {
+        "PROTECT": 50,
+        "MODERATE": 50,
+        "REDESIGN": 70
+      },
+      "n_fixed": 955,
+      "fixed_frac": 0.698,
+      "per_domain": {
+        "RuvC-I": {
+          "policy": "MODERATE",
+          "floor": 50,
+          "length": 59,
+          "fixed": 51,
+          "fixed_frac": 0.864
+        },
+        "BridgeHelix": {
+          "policy": "MODERATE",
+          "floor": 50,
+          "length": 34,
+          "fixed": 32,
+          "fixed_frac": 0.941
+        },
+        "REC1": {
+          "policy": "REDESIGN",
+          "floor": 70,
+          "length": 86,
+          "fixed": 58,
+          "fixed_frac": 0.674
+        },
+        "REC2": {
+          "policy": "REDESIGN",
+          "floor": 70,
+          "length": 128,
+          "fixed": 53,
+          "fixed_frac": 0.414
+        },
+        "REC3": {
+          "policy": "REDESIGN",
+          "floor": 70,
+          "length": 410,
+          "fixed": 241,
+          "fixed_frac": 0.588
+        },
+        "RuvC-II": {
+          "policy": "MODERATE",
+          "floor": 50,
+          "length": 57,
+          "fixed": 46,
+          "fixed_frac": 0.807
+        },
+        "HNH": {
+          "policy": "PROTECT",
+          "floor": 50,
+          "length": 134,
+          "fixed": 112,
+          "fixed_frac": 0.836
+        },
+        "RuvC-III": {
+          "policy": "MODERATE",
+          "floor": 50,
+          "length": 190,
+          "fixed": 149,
+          "fixed_frac": 0.784
+        },
+        "PI": {
+          "policy": "PROTECT",
+          "floor": 50,
+          "length": 270,
+          "fixed": 213,
+          "fixed_frac": 0.789
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# bulk generation + scoring artifacts (regenerated; mirror to gdrive LigandMPNN)
+outputs/
+__pycache__/
+*.pyc
+esm_scores*.json

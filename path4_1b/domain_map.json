@@ -1,0 +1,236 @@
+{
+  "target": "SpRY-Cas9 / 8SRS chain A",
+  "numbering": "author (8SRS chain A, 3-1366, 23 internal gaps)",
+  "full_length_ref": 1368,
+  "strategy": "per-domain identity: PROTECT PI+HNH, REDESIGN REC, MODERATE RuvC/BH",
+  "domains": [
+    {
+      "name": "RuvC-I",
+      "start": 1,
+      "end": 59,
+      "length": 59,
+      "lobe": "NUC",
+      "policy": "MODERATE",
+      "target_identity": "mid (~60-70%)",
+      "conservation_floor": 70,
+      "note": "catalytic residues + fold core fixed; scaffold redesignable"
+    },
+    {
+      "name": "BridgeHelix",
+      "start": 60,
+      "end": 93,
+      "length": 34,
+      "lobe": "NUC",
+      "policy": "MODERATE",
+      "target_identity": "mid (~60-70%)",
+      "conservation_floor": 70,
+      "note": "catalytic residues + fold core fixed; scaffold redesignable"
+    },
+    {
+      "name": "REC1",
+      "start": 94,
+      "end": 179,
+      "length": 86,
+      "lobe": "REC",
+      "policy": "REDESIGN",
+      "target_identity": "low (<70%, novelty)",
+      "conservation_floor": 90,
+      "note": "main novelty source: only the most-conserved core fixed"
+    },
+    {
+      "name": "REC2",
+      "start": 180,
+      "end": 307,
+      "length": 128,
+      "lobe": "REC",
+      "policy": "REDESIGN",
+      "target_identity": "low (<70%, novelty)",
+      "conservation_floor": 90,
+      "note": "main novelty source: only the most-conserved core fixed"
+    },
+    {
+      "name": "REC3",
+      "start": 308,
+      "end": 717,
+      "length": 410,
+      "lobe": "REC",
+      "policy": "REDESIGN",
+      "target_identity": "low (<70%, novelty)",
+      "conservation_floor": 90,
+      "note": "main novelty source: only the most-conserved core fixed"
+    },
+    {
+      "name": "RuvC-II",
+      "start": 718,
+      "end": 774,
+      "length": 57,
+      "lobe": "NUC",
+      "policy": "MODERATE",
+      "target_identity": "mid (~60-70%)",
+      "conservation_floor": 70,
+      "note": "catalytic residues + fold core fixed; scaffold redesignable"
+    },
+    {
+      "name": "HNH",
+      "start": 775,
+      "end": 908,
+      "length": 134,
+      "lobe": "NUC",
+      "policy": "PROTECT",
+      "target_identity": "high (>=70%)",
+      "conservation_floor": 50,
+      "note": "high fixation: keep function-defining surface (PAM / HNH catalysis+docking)"
+    },
+    {
+      "name": "RuvC-III",
+      "start": 909,
+      "end": 1098,
+      "length": 190,
+      "lobe": "NUC",
+      "policy": "MODERATE",
+      "target_identity": "mid (~60-70%)",
+      "conservation_floor": 70,
+      "note": "catalytic residues + fold core fixed; scaffold redesignable"
+    },
+    {
+      "name": "PI",
+      "start": 1099,
+      "end": 1368,
+      "length": 270,
+      "lobe": "NUC",
+      "policy": "PROTECT",
+      "target_identity": "high (>=70%)",
+      "conservation_floor": 50,
+      "note": "high fixation: keep function-defining surface (PAM / HNH catalysis+docking)"
+    }
+  ],
+  "spry_positions": [
+    {
+      "pos": 61,
+      "domain": "BridgeHelix"
+    },
+    {
+      "pos": 1111,
+      "domain": "PI"
+    },
+    {
+      "pos": 1135,
+      "domain": "PI"
+    },
+    {
+      "pos": 1136,
+      "domain": "PI"
+    },
+    {
+      "pos": 1218,
+      "domain": "PI"
+    },
+    {
+      "pos": 1219,
+      "domain": "PI"
+    },
+    {
+      "pos": 1317,
+      "domain": "PI"
+    },
+    {
+      "pos": 1322,
+      "domain": "PI"
+    },
+    {
+      "pos": 1333,
+      "domain": "PI"
+    },
+    {
+      "pos": 1335,
+      "domain": "PI"
+    },
+    {
+      "pos": 1337,
+      "domain": "PI"
+    }
+  ],
+  "catalytic": [
+    {
+      "pos": 10,
+      "label": "D10",
+      "domain_expected": "RuvC-I",
+      "domain_computed": "RuvC-I"
+    },
+    {
+      "pos": 762,
+      "label": "E762",
+      "domain_expected": "RuvC-II",
+      "domain_computed": "RuvC-II"
+    },
+    {
+      "pos": 839,
+      "label": "D839",
+      "domain_expected": "HNH",
+      "domain_computed": "HNH"
+    },
+    {
+      "pos": 840,
+      "label": "H840",
+      "domain_expected": "HNH",
+      "domain_computed": "HNH"
+    },
+    {
+      "pos": 863,
+      "label": "N863",
+      "domain_expected": "HNH",
+      "domain_computed": "HNH"
+    },
+    {
+      "pos": 983,
+      "label": "H983",
+      "domain_expected": "RuvC-III",
+      "domain_computed": "RuvC-III"
+    },
+    {
+      "pos": 986,
+      "label": "D986",
+      "domain_expected": "RuvC-III",
+      "domain_computed": "RuvC-III"
+    }
+  ],
+  "tracks": {
+    "active": {
+      "mutations": {},
+      "note": "all 7 catalytic WT; functional dsDNA cleavage"
+    },
+    "nickase_nCas9": {
+      "mutations": {
+        "840": "A"
+      },
+      "note": "H840A: HNH-dead nickase (canonical for base/prime editing)"
+    },
+    "dCas9": {
+      "mutations": {
+        "10": "A",
+        "840": "A"
+      },
+      "note": "D10A+H840A: catalytically dead (CRISPRi/anchoring)"
+    }
+  },
+  "mandatory_locks": [
+    10,
+    61,
+    762,
+    839,
+    840,
+    863,
+    983,
+    986,
+    1111,
+    1135,
+    1136,
+    1218,
+    1219,
+    1317,
+    1322,
+    1333,
+    1335,
+    1337
+  ]
+}
