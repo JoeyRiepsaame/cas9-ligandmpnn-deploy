@@ -36,13 +36,8 @@ PROTEIN_CKPT="proteinmpnn_v_48_020"
 SOLUBLE_CKPT="solublempnn_v_48_020"
 N_SOLUBLE=20; N_PROTEIN=20; N_LIGAND=15
 
-# ---------- 0. setup ----------
-if [[ ! -d "$LIGANDMPNN_DIR" ]]; then
-  echo "[setup] cloning LigandMPNN ..."
-  git clone https://github.com/dauparas/LigandMPNN.git "$LIGANDMPNN_DIR"
-  ( cd "$LIGANDMPNN_DIR" && bash get_model_params.sh "./model_params" )
-  pip install -q torch numpy ProDy biopython ml-collections
-fi
+# ---------- 0. setup (clone + curl checkpoints + numpy-2/run.py patches; idempotent) ----------
+bash "$HERE/setup_ligandmpnn.sh" "$LIGANDMPNN_DIR"
 
 # ---------- 1. PRE-FLIGHT (fail loudly) ----------
 echo "=================== PRE-FLIGHT ==================="
@@ -99,7 +94,7 @@ gen () {  # gen <tier> <model_type> <ckpt_flag> <ckpt> <atom_ctx 0|1> <nseq> <ta
         --omit_AA "C" \
         --temperature "$temp" --seed "$seed" \
         --batch_size "$nseq" --number_of_batches 1 \
-        --save_score 1 --save_probs 1
+        --save_stats 1
     done
   done
 }
@@ -127,7 +122,7 @@ for fa in glob.glob(os.path.join(root,'**','seqs','*.fa'), recursive=True):
     parts=os.path.relpath(fa,root).split(os.sep); tier=parts[0]
     for line in open(fa):
         if line.startswith('>'):
-            m=re.search(r'global_score=([0-9.]+)', line)
+            m=re.search(r'overall_confidence=([0-9.]+)', line)
             if m: rows.append((tier, float(m.group(1)), os.path.relpath(fa,root), line.strip()))
 rows.sort(key=lambda r:(r[0], r[1]))
 with open(os.path.join(root,'ranked_designs.csv'),'w',newline='') as fh:

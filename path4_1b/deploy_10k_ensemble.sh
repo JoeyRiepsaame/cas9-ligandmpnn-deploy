@@ -20,11 +20,7 @@ FIXED="$(cat "$HERE/tiers/${TIER}_fixed.txt")"
 OUT_DIR="${OUT_DIR:-$HERE/outputs/ensemble10k_${TIER}}"
 DESIGN_CHAIN="A"
 
-if [[ ! -d "$LIGANDMPNN_DIR" ]]; then
-  echo "[setup] cloning LigandMPNN ..."; git clone https://github.com/dauparas/LigandMPNN.git "$LIGANDMPNN_DIR"
-  ( cd "$LIGANDMPNN_DIR" && bash get_model_params.sh "./model_params" )
-  pip install -q torch numpy ProDy biopython ml-collections
-fi
+bash "$HERE/setup_ligandmpnn.sh" "$LIGANDMPNN_DIR"
 
 # preflight: tier present + catalytic locked (reuse the same checks)
 python3 - "$INPUT_CIF" "$HERE/tiers/${TIER}_fixed.txt" <<'PYEOF'
@@ -58,7 +54,7 @@ gen () {  # gen <model_type> <ckpt_flag> <ckpt> <atom> <batch> <nbatch> <tag>
         --chains_to_design "$DESIGN_CHAIN" --fixed_residues "$FIXED" \
         --ligand_mpnn_use_atom_context "$atom" --omit_AA "C" \
         --temperature "$temp" --seed "$seed" \
-        --batch_size "$bs" --number_of_batches "$nb" --save_score 1
+        --batch_size "$bs" --number_of_batches "$nb" --save_stats 1
     done
   done
 }
