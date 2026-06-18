@@ -1,0 +1,46 @@
+{
+  "omit": "C",
+  "bias": null,
+  "native_cys": [
+    80,
+    574
+  ],
+  "tiers": {
+    "T_aggressive": {
+      "protected_cys": [
+        574
+      ],
+      "free_cys": [
+        80
+      ],
+      "forced": [
+        80
+      ],
+      "predicted_correlations": 0
+    },
+    "T_balanced": {
+      "protected_cys": [
+        574
+      ],
+      "free_cys": [
+        80
+      ],
+      "forced": [
+        80
+      ],
+      "predicted_correlations": 0
+    },
+    "T_safe": {
+      "protected_cys": [
+        574
+      ],
+      "free_cys": [
+        80
+      ],
+      "forced": [
+        80
+      ],
+      "predicted_correlations": 0
+    }
+  }
+}
