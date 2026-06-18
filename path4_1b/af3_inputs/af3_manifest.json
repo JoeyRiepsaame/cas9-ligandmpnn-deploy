@@ -11,12 +11,22 @@
   "cas9_sgRNA_iptm": "chain_pair_iptm[0][1]",
   "jobs": [
     {
+      "name": "cas9_d00806",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00824",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
       "name": "cas9_d00102",
       "role": "design/T_aggressive",
       "protein_len": 1341
     },
     {
-      "name": "cas9_d00629",
+      "name": "cas9_d00900",
       "role": "design/T_balanced",
       "protein_len": 1341
     },
@@ -26,22 +36,22 @@
       "protein_len": 1341
     },
     {
+      "name": "cas9_d00781",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
       "name": "cas9_d00542",
       "role": "design/T_balanced",
       "protein_len": 1341
     },
     {
-      "name": "cas9_d00631",
-      "role": "design/T_balanced",
+      "name": "cas9_d00272",
+      "role": "design/T_aggressive",
       "protein_len": 1341
     },
     {
-      "name": "cas9_d00515",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00634",
+      "name": "cas9_d00918",
       "role": "design/T_balanced",
       "protein_len": 1341
     },
@@ -51,8 +61,18 @@
       "protein_len": 1341
     },
     {
+      "name": "cas9_d00634",
+      "role": "design/T_balanced",
+      "protein_len": 1341
+    },
+    {
       "name": "cas9_d00097",
       "role": "design/T_aggressive",
+      "protein_len": 1341
+    },
+    {
+      "name": "cas9_d00795",
+      "role": "design/T_balanced",
       "protein_len": 1341
     },
     {
@@ -87,11 +107,6 @@
     },
     {
       "name": "cas9_d00617",
-      "role": "design/T_balanced",
-      "protein_len": 1341
-    },
-    {
-      "name": "cas9_d00623",
       "role": "design/T_balanced",
       "protein_len": 1341
     },

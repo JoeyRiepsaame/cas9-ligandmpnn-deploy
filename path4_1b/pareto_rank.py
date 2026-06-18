@@ -33,6 +33,12 @@ def pct_identity(wt, design):
     return round(100.0 * ident / aligned, 1)
 
 
+def model_of(best_src):
+    """model type from extract_seqs best_src ('<tier>/<run>#<b>'): sol/prot/lig -> name."""
+    p = best_src.split("/")[1].split("#")[0].split("_")[0]
+    return {"sol": "Soluble", "prot": "Protein", "lig": "Ligand"}.get(p, p)
+
+
 def pareto_front(rows, ax1, ax2):
     front = []
     for r in rows:
@@ -56,48 +62,69 @@ def main(a):
     for sid, m in meta.items():
         if sid not in esm_s or sid not in dutton:
             continue
-        rows.append(dict(id=sid, tier=m["tier"], esm=esm_s[sid],
+        rows.append(dict(id=sid, tier=m["tier"], model=model_of(m["best_src"]), esm=esm_s[sid],
                          mpnn_corr=dutton[sid]["mpnn_corr"], mpnn_raw=dutton[sid]["raw_mpnn"],
                          ld=ld.get(sid), pct_identity=pct_identity(wt, m["seq"]), seq=m["seq"]))
     print(f"merged {len(rows)} designs (WT esm={wt_esm:.4f})")
     if not rows:
         print("no designs joined — check esm/dutton inputs"); return
 
-    front = pareto_front(rows, "esm", "mpnn_corr")
-    # combined z over the two axes
-    me, se = st.mean(r["esm"] for r in rows), st.pstdev(r["esm"] for r in rows) or 1
-    mc, sc = st.mean(r["mpnn_corr"] for r in rows), st.pstdev(r["mpnn_corr"] for r in rows) or 1
+    # FAIRNESS FIX (per-model z): the Dutton/MPNN score is NOT comparable across model
+    # types — LigandMPNN conditions on atom context, inflating its self-confidence vs
+    # Soluble/Protein. z-normalise mpnn_corr WITHIN each model type so all three compete
+    # fairly. ESM is model-agnostic, so its raw value is kept for the Pareto axis.
+    by_model = defaultdict(list)
     for r in rows:
-        r["z"] = (r["esm"] - me) / se + (r["mpnn_corr"] - mc) / sc
+        by_model[r["model"]].append(r["mpnn_corr"])
+    mstat = {m: (st.mean(v), st.pstdev(v) or 1) for m, v in by_model.items()}
+    for r in rows:
+        mu, sd = mstat[r["model"]]
+        r["z_mpnn"] = (r["mpnn_corr"] - mu) / sd
+    print("per-model mpnn_corr mean (pre-norm bias): "
+          + ", ".join(f"{m}={mstat[m][0]:.3f}(n={len(by_model[m])})" for m in sorted(mstat)))
+
+    # Pareto + combined z use the per-model-normalised MPNN axis vs model-agnostic ESM
+    front = pareto_front(rows, "esm", "z_mpnn")
+    me, se = st.mean(r["esm"] for r in rows), st.pstdev(r["esm"] for r in rows) or 1
+    for r in rows:
+        r["z"] = (r["esm"] - me) / se + r["z_mpnn"]
     rows.sort(key=lambda r: -r["z"])
 
     ids = sorted(r["pct_identity"] for r in rows)
     print(f"Pareto frontier (esm x Dutton): {len(front)} | "
           f"%id min/median/max = {ids[0]:.1f}/{ids[len(ids)//2]:.1f}/{ids[-1]:.1f} | "
           f"<{a.id_ceiling}%: {sum(1 for x in ids if x < a.id_ceiling)}")
-    pt = defaultdict(list)
-    for r in rows:
-        pt[r["tier"]].append(r)
-    for t in sorted(pt):
-        v = pt[t]
-        print(f"  {t:14} n={len(v):4} esm={st.mean(x['esm'] for x in v):.3f} "
-              f"mpnn_corr={st.mean(x['mpnn_corr'] for x in v):.3f} "
-              f"%id={st.mean(x['pct_identity'] for x in v):.1f}")
+    for grp, key in (("tier", "tier"), ("model", "model")):
+        pt = defaultdict(list)
+        for r in rows:
+            pt[r[key]].append(r)
+        print(f"per-{grp}:")
+        for t in sorted(pt):
+            v = pt[t]
+            print(f"  {t:14} n={len(v):4} esm={st.mean(x['esm'] for x in v):.3f} "
+                  f"mpnn_corr={st.mean(x['mpnn_corr'] for x in v):.3f} "
+                  f"%id={st.mean(x['pct_identity'] for x in v):.1f}")
 
     with open(os.path.join(HERE, "pareto_ranked.csv"), "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["id", "tier", "esm", "mpnn_corr", "mpnn_raw", "ld", "pct_identity", "z"])
+        w.writerow(["id", "tier", "model", "esm", "mpnn_corr", "z_mpnn", "mpnn_raw",
+                    "ld", "pct_identity", "z"])
         for r in rows:
-            w.writerow([r["id"], r["tier"], r["esm"], r["mpnn_corr"], r["mpnn_raw"],
-                        r["ld"], r["pct_identity"], round(r["z"], 3)])
+            w.writerow([r["id"], r["tier"], r["model"], r["esm"], r["mpnn_corr"],
+                        round(r["z_mpnn"], 3), r["mpnn_raw"], r["ld"], r["pct_identity"],
+                        round(r["z"], 3)])
     front_ids = {r["id"] for r in front}
     shortlist = [r for r in rows if r["id"] in front_ids and r["pct_identity"] < a.id_ceiling][:a.top]
+    from collections import Counter
+    print(f"\nPareto frontier {len(front)} | shortlist {len(shortlist)} (Pareto ∩ <{a.id_ceiling}% id)")
+    print("  shortlist by MODEL:", dict(Counter(r["model"] for r in shortlist)),
+          "| by tier:", dict(Counter(r["tier"] for r in shortlist)))
     json.dump({"wt_esm": wt_esm, "id_ceiling": a.id_ceiling, "pareto_frontier": len(front),
-               "shortlist": [{k: r[k] for k in ("id", "tier", "esm", "mpnn_corr",
-                              "pct_identity", "seq")} for r in shortlist]},
+               "ranking": "ESM (model-agnostic) x per-model-z Dutton-MPNN",
+               "shortlist": [{k: r[k] for k in ("id", "tier", "model", "esm", "mpnn_corr",
+                              "z_mpnn", "pct_identity", "seq")} for r in shortlist]},
               open(os.path.join(HERE, "synthesis_shortlist.json"), "w"), indent=2)
-    print(f"wrote pareto_ranked.csv + synthesis_shortlist.json "
-          f"({len(shortlist)} designs, Pareto ∩ <{a.id_ceiling}% id)")
+    print(f"wrote pareto_ranked.csv + synthesis_shortlist.json")
     print("NEXT: audit shortlist sequences, then AF3 triage (with calibrators) + wet-lab PAM panel.")
 
 

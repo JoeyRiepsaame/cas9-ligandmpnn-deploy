@@ -21,12 +21,23 @@ WT ESM = −0.307 (all designs below WT naturalness, expected at this divergence
 The axes are **anti-correlated**: most-divergent tier wins MPNN, most-fixed tier wins
 naturalness — exactly why selection uses the Pareto frontier, not either axis alone.
 
-## Synthesis shortlist — 17 designs (Pareto frontier ∩ <70% identity)
-- **10× T_aggressive** (~57–61% id) — maximal patent novelty, top Dutton-MPNN, lower naturalness (higher function risk)
-- **7× T_balanced** (~69–70% id) — safer naturalness, borderline novelty
-- File: `synthesis_shortlist.json` (sequences). **Audited:** all 17 byte-match source,
-  len 1341, 7/7 catalytic WT, 11/11 SpRY preserved, omit-C clean.
-- Top by Dutton+ESM balance: d00102, d00018 (T_aggressive, ~60% id); d00629, d00631, d00634 (T_balanced, ~69%).
+## Cross-model fairness fix (per-model-z)
+The campaign generated all 3 model types (Ligand 810 / Protein 360 / Soluble 360) — a real
+competition (unlike the RT sweep, which was LigandMPNN-only). BUT the Dutton/MPNN score is
+**not comparable across model types**: LigandMPNN conditions on the DNA/RNA atom context, so it
+assigns systematically higher self-confidence (mean mpnn_corr Ligand 2.656 > Protein 2.600 >
+Soluble 2.565) — an information advantage, not a quality one. On the model-agnostic **ESM** axis
+the three are **near-tied** (−0.339 / −0.341 / −0.343). The naive Pareto therefore swept 17/17
+LigandMPNN. **Fix:** z-normalise the Dutton score WITHIN each model type before the cross-model
+Pareto, so Soluble/Protein compete fairly. (`pareto_rank.py`, per-model-z.)
+
+## Synthesis shortlist — 20 designs (per-model-z Pareto ∩ <70% identity)
+- **By model: 13 Ligand + 5 Protein + 2 Soluble** (Ligand's 65% ≈ its 53% pool share — fair,
+  vs the 100% sweep before the fix). The fix surfaced 7 Protein/Soluble designs the biased axis hid.
+- **By tier: 11 T_aggressive (~57–61% id) + 9 T_balanced (~69%)** — bold-vs-safe flavors retained.
+- File: `synthesis_shortlist.json`. **Re-audited:** all 20 byte-match source, len 1341,
+  7/7 catalytic WT, 11/11 SpRY preserved, omit-C clean.
+- AF3 batch updated to 25 jobs (20 designs + 5 calibrators).
 
 ## Design-ensemble LD (artifact scan)
 - 729 variable positions; mean MI-APC ≈ 0.0002 (ensemble largely independent → healthy).
