@@ -37,9 +37,9 @@ These are faithful ports that simply need MPNN designs to run against:
 
 | # | RT feature | Why it mattered in RT | Cas9 gap | Priority |
 |---|---|---|---|---|
-| C1 | Conservation reweighting | phylogeny bias in fixation backbone | ✅ **CLOSED this session** | — |
-| C2 | **Design-ensemble LD / coevolution** (`ld_p35_within.json`, `ld_scoring_table.json`) + LD-compatibility scoring | found which positions co-vary *across designs* (distinct from MSA-DCA); scored designs for internal compatibility; caught the C90–184 artifact | **not built** | **HIGH** (in chosen scope) |
-| C3 | **10K-ensemble** single-constraint run for robust LD/MI | 60-design LD over-called couplings; 10K gave stable stats | deploy provisions ~510/tier (~1,530); **no 10K LD run** | **HIGH** (user chose "10K-ensemble") |
+| C1 | Conservation reweighting | phylogeny bias in fixation backbone | ✅ **CLOSED** (`reweight_conservation.py`) | — |
+| C2 | **Design-ensemble LD / coevolution** (`ld_p35_within.json`, `ld_scoring_table.json`) + LD-compatibility scoring | found which positions co-vary *across designs* (distinct from MSA-DCA); scored designs for internal compatibility; caught the C90–184 artifact | ✅ **CLOSED** — `ld_analysis.py` (vectorised MI+APC, self-tested; 10K×600 in 2.7s) + joint-freq scoring; runs post-generation | — |
+| C3 | **10K-ensemble** single-constraint run for robust LD/MI | 60-design LD over-called couplings; 10K gave stable stats | ✅ **script built** (`deploy_10k_ensemble.sh`, preflighted) — needs GPU run | (GPU) |
 | C4 | **AF3 reference-panel calibration** | known-active (PE8d) + known-dead designs calibrated whether AF3 discriminates | **no Cas9 active/dead calibrators chosen** | **HIGH** |
 | C5 | pySCA evolutionary coupling (Pfam) ∪ ensemble LD | added independent evolutionary-coupling signal | not ported (Cas9 RuvC/HNH Pfam exist) | MEDIUM |
 | C6 | Comparative-genomics ancestral validation (412K BV-BRC) | validated ancestral states / refuted artifacts (I90) | not ported | MEDIUM |
