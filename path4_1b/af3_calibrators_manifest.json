@@ -1,0 +1,49 @@
+{
+  "wt_spry": {
+    "role": "positive/native",
+    "note": "active SpRY-Cas9 (folds+binds+cuts) \u2014 positive anchor",
+    "length": 1341,
+    "synthesize_safe": true
+  },
+  "dcas9": {
+    "role": "catalysis-blind",
+    "note": "D10A+H840A: dead nuclease, fold/bind intact -> tests AF3 catalysis-blindness",
+    "length": 1341,
+    "synthesize_safe": false
+  },
+  "ncas9_h840a": {
+    "role": "nickase ref",
+    "note": "H840A nickase reference",
+    "length": 1341,
+    "synthesize_safe": true
+  },
+  "bind_dead": {
+    "role": "binding-deficient (predicted)",
+    "note": "bridge-helix Arg->Glu at [63, 66, 69, 70, 71]: predicted R-loop binding loss",
+    "length": 1341,
+    "synthesize_safe": false
+  },
+  "scram_rec": {
+    "role": "fold-negative (control)",
+    "note": "REC2 window (200, 260) shuffled (seed42), composition preserved -> should misfold",
+    "length": 1341,
+    "synthesize_safe": false
+  },
+  "_meta": {
+    "bridge_helix_args_mutated": [
+      63,
+      66,
+      69,
+      70,
+      71
+    ],
+    "rec_scramble_window": [
+      200,
+      260
+    ],
+    "intended_nonfunctional": [
+      "bind_dead",
+      "scram_rec"
+    ]
+  }
+}
