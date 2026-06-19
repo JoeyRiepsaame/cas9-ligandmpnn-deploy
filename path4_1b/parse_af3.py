@@ -97,6 +97,7 @@ def parse_dir(root):
         probe = {lab: (round(ca[AF3[rn]], 1) if AF3.get(rn) in ca else None)
                  for rn, lab in PROBE.items()}
         role = man.get("cas9_" + name, man.get(name, {})).get("role", "")
+        catvals = [v for k, v in probe.items() if k.startswith("cat_") and v is not None]
         rows.append(dict(job=name, role=role,
                          rank=round(summ.get("ranking_score", 0), 3),
                          iptm=summ.get("iptm"), ptm=summ.get("ptm"),
@@ -104,14 +105,14 @@ def parse_dir(root):
                          cas9_sgRNA=cas9_rna,
                          cas9_DNA=round(max(cas9_dna), 2) if cas9_dna else None,
                          rloop=round(max(rloop), 2) if rloop else None,
+                         cat_min=round(min(catvals), 1) if catvals else None,
                          **probe))
     # calibrators first, then by R-loop desc
     rows.sort(key=lambda r: (not r["role"].startswith("calib"), -(r["rloop"] or 0)))
     hdr = f"{'job':22}{'role':16}{'iptm':>6}{'pTM':>6}{'pLDDT':>7}{'Cas9:gRNA':>10}{'Cas9:DNA':>9}{'R-loop':>8}{'cat_min':>8}"
     print(hdr); print("-" * len(hdr))
     for r in rows:
-        catvals = [r[k] for k in r if k.startswith("cat_") and r[k] is not None]
-        cmin = min(catvals) if catvals else None
+        cmin = r["cat_min"]
         def f(x, w, p=2): return f"{x:>{w}.{p}f}" if isinstance(x, (int, float)) else f"{'-':>{w}}"
         print(f"{r['job']:22}{r['role']:16}{f(r['iptm'],6)}{f(r['ptm'],6)}{f(r['plddt'],7,1)}"
               f"{f(r['cas9_sgRNA'],10)}{f(r['cas9_DNA'],9)}{f(r['rloop'],8)}{f(cmin,8,1)}")
