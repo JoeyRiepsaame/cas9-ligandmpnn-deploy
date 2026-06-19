@@ -1,36 +1,36 @@
-# SpRY-Cas9 Path-4.1b — AF3 Triage Results (complete)
+# SpRY-Cas9 Path-4.1b — AF3 Triage Results (FINAL, 22 folds)
 
-**Date:** 2026-06-19 · folded **20/23 jobs: 17 designs + 3 calibrators** (bind_dead, dcas9, ncas9_h840a).
-Still pending: **wt_spry** (positive) and **scram_rec** (fold-negative). Table: `af3_interface_table.csv`.
+**Date:** 2026-06-19 · **18 designs + 4 calibrators** (bind_dead, dcas9, ncas9, **scram_rec**).
+Table: `af3_interface_table.csv`. The full calibration ladder is now complete.
 
-## Calibrators anchor the WT-fold band
-All 3 calibrators fold/bind near-identically: **pLDDT ~89.7, Cas9:sgRNA ~0.86, Cas9:DNA ~0.95,
-cat_min ~91.1**. dCas9 (D10A+H840A) folds/binds exactly like WT → it serves as the **WT-fold
-positive anchor**. This is the "good" reference band.
+## HEADLINE: AF3 is NON-DISCRIMINATING for this campaign (the calibrator ladder proved it)
+The fold-negative control **`scram_rec`** (a 60-residue stretch of REC2 randomly **shuffled** —
+deliberate nonsense) scores **as high as the real designs globally**: iPTM 0.92, pLDDT 86.0,
+Cas9:sgRNA 0.87, cat_min 82.8. Local check in the shuffled window (author 200–260):
 
-## R-loop iPTM = artifact (now confirmed by dCas9)
-sgRNA:DNA iPTM = 0.03 for **dCas9 too** — dCas9 binds perfectly, yet scores the same low R-loop as
-every design. Cause: 98 nt sgRNA dilutes the whole-chain iPTM + AF3 keeps the DNA duplexed
-(DNA:DNA 0.24–0.33 > sgRNA:DNA 0.01–0.03). **Do not rank on R-loop.** R-loop/PAM → wet lab.
-
-## All 17 designs PASS the fold + binding gate (but below the WT ceiling)
-Every design: iPTM 0.90–0.92, Cas9:DNA 0.93–0.94, catalytic site ordered. They sit ~5 pLDDT
-below the calibrator ceiling (84–86 vs 89.7) and lower cat_min — expected for 30–43 % redesign,
-none catastrophic.
-
-## Ranking vs the WT-fold band (pLDDT + Cas9:gRNA + catalytic ordering)
-| Tier | designs | note |
+| job | pLDDT @200–260 | global pLDDT |
 |---|---|---|
-| **TOP** | **d00806\*, d00900\*, d00941** | closest to WT-fold on all 3 metrics; **both consensus designs are TOP** |
-| mid | d00107, d00824, d00918, d01011, d00526, d00523, d00537, d00097, d00018 | solid fold; d00537 highest pLDDT (86.1); d00107 highest gRNA (0.88)+cat |
-| **weak — deprioritise** | d00272 (pLDDT 80.7), d00542\* (gRNA 0.75), d00134 (0.75), d00102 (gRNA 0.75, cat 75.4), d00101 (gRNA 0.70) | most are the most-divergent bold/T_aggressive picks |
+| scram_rec (nonsense) | **43.7** | 89.6 |
+| dCas9 (native REC2) | **88.6** | 94.2 |
+| d00806 / d00900 / d00781 / d00107 (real designs) | 41.8 / 40.7 / 47.5 / 35.6 | ~84–90 |
 
-\*consensus. Reassuring: the two designs both scoring axes agreed on (d00806, d00900) fold best.
+→ The real redesigns score **as low as the scramble** in the redesigned REC2; only the **native**
+sequence folds it confidently. **AF3 cannot distinguish a genuine heavy REC redesign from random
+nonsense.** High global scores are carried by the conserved ~95 % of the protein. R-loop iPTM is
+also an artifact (dCas9 binds perfectly yet R-loop = 0.03; 98 nt sgRNA dilution + AF3 keeps DNA duplexed).
 
-## Remaining gap + recommendation
-- **Only `scram_rec` (fold-negative) is still critical** — it sets the floor; without it we can't be
-  sure AF3 discriminates fold quality (vs scoring everything ~84). dCas9 already gives the positive.
-  → fold `scram_rec` (1 job) to close the gate. (wt_spry optional — dCas9 ≈ WT-fold.)
-- **Carry forward:** the TOP set (d00806, d00900, d00941) + a couple of mids (d00107 strong gRNA,
-  d00537 high pLDDT) + 1–2 bold (d00097) for the divergence test. Deprioritise d00101/d00102/d00272.
-- **Wet-lab PAM panel = the real arbiter** (AF3 can't test catalysis or PAM relaxation).
+## What AF3 DID establish (a weak sanity gate only)
+- No design **globally collapses**: iPTM 0.90–0.92, Cas9:DNA 0.93–0.95, catalytic site ordered.
+- That is the limit of its value here — it cannot **rank** designs or **validate the REC redesign**.
+
+## Implication for selection
+- **Do NOT use AF3 scores to narrow the pilot** — they don't discriminate (scram_rec passes).
+- Selection rests on the **sequence-based axes** (ESM naturalness + per-model-z Dutton) already used,
+  and the **wet-lab PAM panel is now the SOLE functional arbiter**.
+- This is the RamR/AF3-blindness failure mode, empirically confirmed for Cas9 — exactly what the
+  calibration ladder was built to detect. (Had we trusted "all designs pass," we'd have been misled.)
+
+## Carry-forward (by sequence axes, AF3 neither confirms nor refutes)
+- **Consensus designs** (in both shortlists) remain the safest: d00542, **d00781, d00806, d00900**.
+- Span the wet-lab pilot across provenance/model/tier as planned (`pilot_set.json`).
+- Wet-lab readout: cleavage on NGG + NAA/NAC/NAG.
